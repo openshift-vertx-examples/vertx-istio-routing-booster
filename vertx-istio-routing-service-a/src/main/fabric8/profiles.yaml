@@ -1,0 +1,5 @@
+# we need to remove the fmp-project enricher that messes up labels and selectors
+- name: default
+  enricher:
+    excludes:
+    - fmp-project

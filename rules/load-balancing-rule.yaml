@@ -1,0 +1,14 @@
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: vertx-istio-routing-service
+spec:
+  destination:
+    name: vertx-routing-service
+  route:
+    - labels:
+        version: a
+      weight: 10
+    - labels:
+        version: b
+      weight: 90
