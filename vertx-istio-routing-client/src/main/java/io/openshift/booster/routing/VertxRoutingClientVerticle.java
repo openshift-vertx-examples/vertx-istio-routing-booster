@@ -17,7 +17,7 @@ public class VertxRoutingClientVerticle extends AbstractVerticle {
   @Override
   public void start(Future<Void> future) {
     client = WebClient.create(vertx, new WebClientOptions()
-      .setDefaultHost("vertx-routing-service")
+      .setDefaultHost("vertx-istio-routing-service")
       .setDefaultPort(8080));
 
     Router router = Router.router(vertx);

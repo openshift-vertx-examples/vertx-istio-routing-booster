@@ -1,5 +1,5 @@
 metadata:
-  name: vertx-routing-service
+  name: vertx-istio-routing-service
   labels:
     app: vertx-istio-routing-service
 spec:

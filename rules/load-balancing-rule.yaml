@@ -4,7 +4,7 @@ metadata:
   name: vertx-istio-routing-service
 spec:
   destination:
-    name: vertx-routing-service
+    name: vertx-istio-routing-service
   route:
     - labels:
         version: a
