@@ -36,14 +36,14 @@ This configuration is used to define service names and deployments that control 
 traffic at a different port/url than the default. In this case, our application accepts traffic at `/`, but we will access it with the path `/example`.
 
 ```bash
-oc apply -f rules/client-route-rule.yaml
+oc apply -f rules/client-route-rule.yaml -n $(oc project -q)
 ```
 
 * Access the application
 Run the following command to determine the appropriate URL to access our demo. Make sure you access the url with the HTTP scheme. HTTPS is NOT enabled by default:
 
 ```bash
-echo http://$(oc get route istio-ingress -o jsonpath='{.spec.host}{"\n"}' -n istio-system)/example/
+ echo http://$(oc get route istio-ingressgateway -o jsonpath='{.spec.host}{"\n"}' -n istio-system)/example/
 ```
 
 The result of the above command is the istio-system istio-ingress URL, appended with the RouteRule path. Open this URL in your a web browser.

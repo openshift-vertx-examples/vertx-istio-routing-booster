@@ -1,14 +1,31 @@
-apiVersion: config.istio.io/v1alpha2
-kind: RouteRule
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
 metadata:
   name: vertx-istio-routing-service
 spec:
-  destination:
-    name: vertx-istio-routing-service
-  route:
-    - labels:
-        version: a
-      weight: 10
-    - labels:
-        version: b
-      weight: 90
+  host: vertx-istio-routing-service
+  subsets:
+  - name: a
+    labels:
+      version: a
+  - name: b
+    labels:
+      version: b
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: vertx-istio-routing-service
+spec:
+  hosts:
+  - vertx-istio-routing-service
+  http:
+  - route:
+    - destination:
+        host: vertx-istio-routing-service
+        subset: b
+      weight: 80
+    - destination:
+        host: vertx-istio-routing-service
+        subset: a
+      weight: 20
