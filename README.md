@@ -12,7 +12,7 @@ Showcases Istio's dynamic routing capabilities with a minimal set of example app
 oc login -u system:admin
 oc adm policy add-cluster-role-to-user admin developer --as=system:admin
 oc login -u developer -p developer
-oc new-project <whatever valid project name you want>
+oc new-project <whatever valid project name you want> # not required
 ```
 
 ## Build and deploy the application
@@ -27,6 +27,16 @@ mvn clean fabric8:deploy -Popenshift
 Configuration for FMP may be found both in pom.xml and `src/main/fabric8` files/folders.
 
 This configuration is used to define service names and deployments that control how pods are labeled/versioned on the OpenShift cluster. Labels and versions are key concepts for creating load-balanced or multi-versioned pods in a service.
+
+### With S2I Templates
+
+```bash
+find . | grep openshiftio | grep application | xargs -n 1 oc apply -f
+
+oc new-app --template=vertx-istio-routing-client-service -p SOURCE_REPOSITORY_URL=https://github.com/openshiftio-vertx-boosters/vertx-istio-routing-booster -p SOURCE_REPOSITORY_REF=master -p SOURCE_REPOSITORY_DIR=vertx-istio-routing-client
+oc new-app --template=vertx-istio-routing-service-a -p SOURCE_REPOSITORY_URL=https://github.com/openshiftio-vertx-boosters/vertx-istio-routing-booster -p SOURCE_REPOSITORY_REF=master -p SOURCE_REPOSITORY_DIR=vertx-istio-routing-service-a
+oc new-app --template=vertx-istio-routing-service-b -p SOURCE_REPOSITORY_URL=https://github.com/openshiftio-vertx-boosters/vertx-istio-routing-booster -p SOURCE_REPOSITORY_REF=master -p SOURCE_REPOSITORY_DIR=vertx-istio-routing-service-b
+```
 
 ##  Use Cases
 

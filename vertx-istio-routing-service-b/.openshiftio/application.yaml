@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Template
 metadata:
-  name: launcher-builder
+  name: vertx-istio-routing-service-b
   annotations:
-    description: This template creates a Build Configuration using an S2I builder.
-    tags: instant-app
+   description: The Istio Routing Mission shows routing with Istio
+   tags: instant-app
 parameters:
 - name: SOURCE_REPOSITORY_URL
   description: The source URL for the application
@@ -30,16 +30,16 @@ objects:
 - apiVersion: v1
   kind: ImageStream
   metadata:
-    name: vertx-istio-routing-service
+    name: vertx-istio-routing-service-b
     labels:
-      booster: vertx-istio-routing-service
+      booster: vertx-istio-routing-service-b
   spec: {}
 - apiVersion: v1
   kind: ImageStream
   metadata:
-    name: runtime-vertx-istio-routing-service
+    name: runtime-vertx-istio-routing-service-b
     labels:
-      booster: vertx-istio-routing-service
+      booster: vertx-istio-routing-service-b
   spec:
     tags:
     - name: latest
@@ -49,9 +49,9 @@ objects:
 - apiVersion: v1
   kind: BuildConfig
   metadata:
-    name: vertx-istio-routing-service
+    name: vertx-istio-routing-service-b
     labels:
-      booster: vertx-istio-routing-service
+      booster: vertx-istio-routing-service-b
   spec:
     output:
       to:
@@ -69,7 +69,7 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: runtime-vertx-istio-routing-service:latest
+          name: runtime-vertx-istio-routing-service-b:latest
         incremental: true
         env:
         - name: MAVEN_ARGS_APPEND
@@ -114,7 +114,6 @@ objects:
   kind: DeploymentConfig
   metadata:
     annotations:
-      fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=vertx-istio-routing-service-b&var-version=1-SNAPSHOT
       fabric8.io/scm-con-url: scm:git:https://github.com/openshiftio/booster-parent.git/vertx-istio-routing-parent/vertx-istio-routing-service-b
       fabric8.io/scm-url: https://github.com/openshiftio/vertx-istio-routing-parent/vertx-istio-routing-service-b
       fabric8.io/iconUrl: img/icons/vertx.svg
@@ -135,7 +134,6 @@ objects:
     template:
       metadata:
         annotations:
-          fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=vertx-istio-routing-service-b&var-version=1-SNAPSHOT
           fabric8.io/scm-con-url: scm:git:https://github.com/openshiftio/booster-parent.git/vertx-istio-routing-parent/vertx-istio-routing-service-b
           sidecar.istio.io/inject: "true"
           fabric8.io/scm-url: https://github.com/openshiftio/vertx-istio-routing-parent/vertx-istio-routing-service-b

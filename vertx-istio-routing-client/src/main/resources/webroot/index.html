@@ -60,7 +60,7 @@
       </p>
       <h4>Apply a custom Istio RouteRule to control load balancing behavior.</h4>
       <p>Log in to your project's namespace, navigate to the mission source code on your local environment, and run the following command from your CLI:</p>
-      <pre>oc create -f rules/load-balancing-rule.yml</pre>
+      <pre>oc create -f rules/load-balancing-rule.yaml</pre>
       <p>
         Note that the RouteRule defined in the file above uses labels "a" and "b" to identify each unique version of the service. If multiple services match any of these labels, traffic will be divided between them accordingly. Additional routes/weights can be supplied using additional labels/service versions as desired.
       </p>
