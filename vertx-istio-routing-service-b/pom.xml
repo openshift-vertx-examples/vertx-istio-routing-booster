@@ -7,7 +7,7 @@
   <parent>
     <groupId>io.openshift.booster</groupId>
     <artifactId>vertx-istio-routing-parent</artifactId>
-    <version>2</version>
+    <version>3-SNAPSHOT</version>
   </parent>
 
   <artifactId>vertx-istio-routing-service-b</artifactId>
