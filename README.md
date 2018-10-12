@@ -4,8 +4,17 @@
 Showcases Istio's dynamic routing capabilities with a minimal set of example applications.
 
 ## Prerequisites
-* Openshift 3.9 cluster
-* Istio
+* Openshift 3.10 cluster with Istio. For local development, download the latest release from [Maistra](https://github.com/Maistra/origin/releases) and run:
+
+```bash
+# Set oc to be the Maistra one
+oc cluster up --enable="*,istio"
+oc login -u system:admin
+oc apply -f https://raw.githubusercontent.com/Maistra/openshift-ansible/maistra-0.2.0-ocp-3.1.0-istio-1.0.2/istio/cr-minimal.yaml -n istio-operator
+oc get pods -n istio-system -w
+```
+Wait until the `openshift-ansible-istio-installer-job-xxxx` job has completed. It can take several minutes. The OpenShift console is available on https://127.0.0.1:8443.
+
 * Create a new project/namespace on the cluster. This is where your application will be deployed.
 
 ```bash
