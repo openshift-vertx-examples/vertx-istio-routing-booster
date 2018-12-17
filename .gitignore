@@ -13,3 +13,5 @@ tmp
 
 # OpenShift
 openshift.local.clusterup*
+
+.vscode
