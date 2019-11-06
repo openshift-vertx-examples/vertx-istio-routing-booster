@@ -11,7 +11,7 @@
   <properties>
     <skip.fmp>true</skip.fmp>
     <vertx.version>3.6.2</vertx.version>
-    <vertx-maven-plugin.version>1.0.18</vertx-maven-plugin.version>
+    <vertx-maven-plugin.version>1.0.22</vertx-maven-plugin.version>
 
     <fabric8-maven-plugin.version>3.5.42</fabric8-maven-plugin.version>
     <arquillian-cube.version>1.18.2</arquillian-cube.version>
